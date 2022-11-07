@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Agregar Laboratorio</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+
+    <!-- Icons font CSS-->
+    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="/styles/style_form.css" rel="stylesheet" media="all">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+
+    <script type="text/javascript">
+    // Initialize our function when the document is ready for events.
+    jQuery(document).ready(function(){
+       
+        
+        $("#lab").bind('keypress', function(event) {
+            var regex = new RegExp("^[a-zA-Z ]+$");
+            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+            if (!regex.test(key)) {
+                  alert("Mucho ojo cuate! Solo se permiten letras.")
+                event.preventDefault();
+                return false;
+            }
+        });
+
+
+    });
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("formulario").addEventListener('submit', validarFormulario); 
+    });
+
+
+    function validarFormulario(evento) {
+    evento.preventDefault();
+       
+        var lab = document.getElementById('lab').value;
+        if (lab.length < 4 || lab.length > 25) {
+            alert('Verifiqué el campo Laboratorio!\nPuede que el número permitido de letras sea excedido o sea menor al permitido.');
+            return;
+        }
+
+        this.submit();
+    }
+
+    </script> 
+
+</head>
+<body >
+    <div class="page-wrapper bg-gra-02  font-poppins">
+        <div class="wrapper wrapper--w600">
+            <div class="card card-4">
+                <div class="card-body">
+                    <h2 class="title">Registrar Laboratorio</h2>
+                    <form method="POST" id="formulario">
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Tipo Laboratorio</label>
+                                    <input class="input--style-4" type="text" name="lab" id="lab">
+                                </div>
+                            </div>
+                        </div>
+                     
+                        <div class="p-t-15">
+                       <center>    <button class="btn btn--radius-2 btn--blue" type="submit">Registrar</button> </center> 
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/script.js"></script>
+
+</body>
+</html>
